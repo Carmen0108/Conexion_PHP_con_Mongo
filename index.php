@@ -58,12 +58,11 @@ $resultado = $colproducto->find();
         <tbody>
             <?php
             foreach ($resultado as $producto) {
-                $productoArray = json_decode(json_encode($producto), true);
-                $codigo = (string)$productoArray['_id']['$oid'];
-                $nombre = $productoArray['nombProd'];
-                $marca = $productoArray['marca'];
-                $costo = (float)$productoArray['costo']['$NumberDecimal'];
-                $categoria = $productoArray['categoria'];
+                $codigo = (string)$producto['_id']; // Acceso directo a _id
+                $nombre = $producto['nombProd']; // Nombre del producto
+                $marca = $producto['marca']; // Marca del producto
+                $costo = (float)$producto['costo']->__toString(); // Convertir Decimal128 a float
+                $categoria = $producto['categoria']; // Categoría
 
                 echo "<tr>";
                 echo "<td>$codigo</td>";
